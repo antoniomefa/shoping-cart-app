@@ -59,7 +59,7 @@ export default function Home({navigation}) {
         <FlatList 
           data={globalState.articles} 
           renderItem={ ({item}) => <Product data={item} handleAddToCart={handleAddToCart} counter={counter} setCounter={setCounter}/> }
-          keyExtractor={item => item.id} 
+          keyExtractor={item => item.id.toString()} 
           />
       }
       {

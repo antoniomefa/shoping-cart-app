@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -22,6 +22,7 @@ export default function Cart({navigation}) {
         :
           <Text style={styles.title}>Tu carrito está vacío!</Text>
       }
+      <ScrollView>
       <View style={styles.card}>
         {
           globalState.cartItems.length > 0 &&
@@ -65,9 +66,10 @@ export default function Cart({navigation}) {
             </>
         }
       </View>
+      </ScrollView>
       {
         globalState.cartItems.length > 0 &&
-          <TouchableOpacity style={styles.floatingButton} onPress={() => navigation.navigate("Mi Carrito")}>
+          <TouchableOpacity style={styles.floatingButton} onPress={() => Alert.alert('Procesador de pagos', 'Saldo insuficiente')}>
             <Text style={styles.floatingButtonText}>Pagar ahora</Text>
             <MaterialCommunityIcons name="credit-card-check" size={24} color='#FFF'/>
           </TouchableOpacity>
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
   },
   card: {
     marginTop: '2%',
+    marginBottom: '16%',
     padding: '2%',
     borderRadius: 8,
     backgroundColor: '#FFF'

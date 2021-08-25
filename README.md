@@ -25,12 +25,12 @@ Por: Antonio Mendiola Farías - 2021
 - Ejecutar el proyecto "expo start"
 - Abre 'Expo Go' en tu dispositivo y escanea el código QR que aparece en la consola o el navegador
 
-## Instrucciones para ejecutar la app desde Expo
+## Instrucciones para abrir el priyecto desde la app 'Expo Go'
 
 El proyecto se encuentra publicado en mi cuenta de Expo.
 - Descarga la aplicación 'Expo Go' en tu dispositivo físico Android o iOS
 - Crea y/o ingresa a tu cuenta de Expo
 - Descarga el proyecto desde: https://expo.dev/@antoniomefa/shoping-cart-app
 
-## En caso de no poder ingresar a la App:
-- Comunicate conmigo para enviarte por correo una invitación al proyecto y puedas ejecutarla.
+## Error al abrir la App en 'Expo Go'
+- En caso de que la app no abra en tu dispositivo, comunicate conmigo para enviarte por correo una invitación al proyecto y puedas ejecutarla sin problema.
