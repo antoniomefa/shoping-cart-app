@@ -1,8 +1,8 @@
 ## Carrito de compras en React Native.
 
 <p align="center">
-    <img src="/assets/preview-list.png"/>
-    <img src="/assets/preview-cart.png"/>
+    <img src="/assets/preview-list.png" width="350"/>
+    <img src="/assets/preview-cart.png" width="350"/>
 </p>
 
 - Desarrollada en React Native con Expo
