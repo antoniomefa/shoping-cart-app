@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
-export default function Product({data, handleAddToCart, counter, setCounter}) {
+export default function Product({data, handleAddToCart}) {
     const {title, price, description, image} = data;
 
     return(
@@ -14,7 +14,7 @@ export default function Product({data, handleAddToCart, counter, setCounter}) {
             <View style={styles.rowPrice}>
                 <Text style={styles.offer}>Llévalo por </Text>
                 <Text style={styles.price}>$ {price}</Text>
-                <TouchableOpacity style={styles.button} onPress={() => {setCounter(counter+1); handleAddToCart(data)}}>
+                <TouchableOpacity style={styles.button} onPress={() => {handleAddToCart(data)}}>
                     <Text style={styles.buttonText}>Agregar al carrito</Text>
                 </TouchableOpacity>
             </View>

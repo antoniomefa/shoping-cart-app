@@ -1,13 +1,15 @@
 import React, {useState, useEffect, useContext, useLayoutEffect} from 'react';
-import { StyleSheet, Text, View, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView, TouchableOpacity, Alert} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import GlobalContext from '../context/globalContext';
 import Product from '../components/Product';
+import Loading from '../components/Loading';
 
 export default function Home({navigation}) {
   const globalState = useContext(GlobalContext);
-  const [counter, setCounter] = useState(0);
+  const [update, setUpdate] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -22,10 +24,12 @@ export default function Home({navigation}) {
   
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       await fetch('https://fakestoreapi.com/products')
       .then( res => res.json() )
       .then( json => globalState.setArticles(json) )
-      .catch(e => console.log(e))
+      .catch(e => Alert.alert('Error al obtener los articulos',e))
+      setIsLoading(false);
     })()
   }, [])
 
@@ -50,6 +54,7 @@ export default function Home({navigation}) {
         cartItems.push({ ...item, count: 1 });
       }
       globalState.setCartItems(cartItems);
+      setUpdate(update+1);
   }
 
   return (
@@ -58,9 +63,10 @@ export default function Home({navigation}) {
         globalState.articles.length > 0 &&
         <FlatList 
           data={globalState.articles} 
-          renderItem={ ({item}) => <Product data={item} handleAddToCart={handleAddToCart} counter={counter} setCounter={setCounter}/> }
-          keyExtractor={item => item.id.toString()} 
-          />
+          renderItem={ ({item}) => <Product data={item} handleAddToCart={handleAddToCart} /> }
+          keyExtractor={item => item.id.toString()}
+          ListFooterComponent={<View style={styles.span}></View>}
+        />
       }
       {
         globalState.articles.length > 0 &&
@@ -68,6 +74,10 @@ export default function Home({navigation}) {
           <Text style={styles.floatingButtonText}>Ver {getNumber()} artículos</Text>
           <Ionicons name="cart-sharp" size={24} color={'#FFF'} />
         </TouchableOpacity>
+      }
+      {
+        isLoading &&
+        <Loading isVisible={isLoading} text={'Cargando...'}/>
       }
     </SafeAreaView>
   );
@@ -104,5 +114,8 @@ const styles = StyleSheet.create({
   floatingButtonText: {
     fontSize: 16,
     color: '#FFF'
+  },
+  span: {
+    padding: '10%'
   }
 });
